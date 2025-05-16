@@ -14,7 +14,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Lista de Compras",
-  description: "Organize suas compras por categorias"
+  description: "Organize suas compras por categorias",
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
@@ -28,6 +29,17 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/service-worker.js');
+                });
+              }
+            `,
+          }}
+        />
       </body>
     </html>
   );
