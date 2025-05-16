@@ -1,0 +1,27 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    groups:
+      nextjs-dependencies:
+        patterns:
+          - "next"
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+      testing-dependencies:
+        patterns:
+          - "jest"
+          - "@testing-library/*"
+      styling-dependencies:
+        patterns:
+          - "tailwindcss"
+          - "postcss"
+          - "autoprefixer"
+    ignore:
+      - dependency-name: "next"
+        versions: ["13.x"]
