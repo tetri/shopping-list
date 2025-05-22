@@ -9,7 +9,7 @@ interface ShoppingItemProps {
   quantity: number
   completed: boolean
   onToggle: (id: string) => void
-  onDelete: (id: string) => void
+  onDelete: () => void
 }
 
 export function ShoppingItem({
@@ -37,7 +37,7 @@ export function ShoppingItem({
       <Button
         variant="ghost"
         size="icon"
-        onClick={() => onDelete(id)}
+        onClick={onDelete}
         className="text-destructive hover:text-destructive/90"
       >
         <Trash2 className="h-4 w-4" />

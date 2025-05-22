@@ -22,7 +22,7 @@ const categories = [
   "Grãos e Cereais",
   "Bebidas",
   "Limpeza",
-  "Higiene",  
+  "Higiene",
   "Outros",
 ]
 
@@ -45,7 +45,7 @@ export function AddItemForm({ onAdd }: AddItemFormProps) {
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="flex flex-row gap-2">
         <div className="flex flex-col gap-2 w-[200px]">
-          <Label htmlFor="category" className="text-xs">Categoria</Label>
+          <Label htmlFor="category" className="text-sm font-medium leading-none">Categoria</Label>
           <Select value={category} onValueChange={setCategory}>
             <SelectTrigger id="category" className="w-full">
               <SelectValue />
@@ -60,7 +60,7 @@ export function AddItemForm({ onAdd }: AddItemFormProps) {
           </Select>
         </div>
         <div className="flex flex-col gap-2 w-[100px]">
-          <Label htmlFor="quantity" className="text-xs">Quantidade</Label>
+          <Label htmlFor="quantity" className="text-sm font-medium leading-none">Quantidade</Label>
           <Input
             id="quantity"
             type="number"
@@ -70,7 +70,7 @@ export function AddItemForm({ onAdd }: AddItemFormProps) {
           />
         </div>
         <div className="flex flex-col gap-2 flex-2">
-          <Label htmlFor="name" className="text-xs">Item</Label>
+          <Label htmlFor="name" className="text-sm font-medium leading-none">Item</Label>
           <Input
             id="name"
             autoComplete="off"
@@ -78,7 +78,7 @@ export function AddItemForm({ onAdd }: AddItemFormProps) {
             onChange={(e) => setName(e.target.value)}
           />
         </div>
-        <Button className="self-end rounded-full cursor-pointer" type="submit"><Plus /> Adicionar</Button>
+        <Button className="self-end" variant="outline" size="icon" type="submit"><Plus /></Button>
       </div>
     </form>
   )

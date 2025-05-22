@@ -3,6 +3,16 @@
 import { useState, useEffect } from "react";
 import { ShoppingItem } from "@/components/shopping-item";
 import { AddItemForm } from "@/components/add-item-form";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 interface ShoppingItem {
   id: string;
@@ -14,6 +24,7 @@ interface ShoppingItem {
 
 export default function Home() {
   const [items, setItems] = useState<ShoppingItem[]>([]);
+  const [itemToDelete, setItemToDelete] = useState<ShoppingItem | null>(null);
 
   // Carregar itens salvos no localStorage após a montagem do componente
   useEffect(() => {
@@ -55,6 +66,7 @@ export default function Home() {
       localStorage.setItem("shoppingItems", JSON.stringify(newItems));
       return newItems;
     });
+    setItemToDelete(null);
   };
 
   const groupedItems = items.reduce((acc, item) => {
@@ -68,8 +80,10 @@ export default function Home() {
   return (
     <main className="container w-2xl mx-auto py-8 space-y-8">
       <div className="space-y-1">
-        <h1 className="text-4xl font-bold tracking-tight">Lista de Compras</h1>
-        <p className="text-muted-foreground">
+        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+          Lista de Compras
+        </h1>
+        <p className="text-xl text-muted-foreground">
           Organize suas compras por categorias
         </p>
       </div>
@@ -79,20 +93,41 @@ export default function Home() {
       <div className="space-y-6">
         {Object.entries(groupedItems).map(([category, items]) => (
           <div key={category} className="space-y-4">
-            <h2 className="text-xl font-semibold">{category}</h2>
+            <h2 className="scroll-m-20 text-xl font-semibold tracking-tight">{category}</h2>
             <div className="space-y-2">
               {items.map((item) => (
                 <ShoppingItem
                   key={item.id}
                   {...item}
                   onToggle={handleToggleItem}
-                  onDelete={handleDeleteItem}
+                  onDelete={() => setItemToDelete(item)}
                 />
               ))}
             </div>
           </div>
         ))}
       </div>
+
+      <AlertDialog open={!!itemToDelete} onOpenChange={() => setItemToDelete(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Excluir {itemToDelete?.name}?</AlertDialogTitle>
+            <AlertDialogDescription>
+              Tem certeza que deseja excluir este item da lista de compras?<br />
+              Esta ação não pode ser desfeita.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Não, cancelar</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => itemToDelete && handleDeleteItem(itemToDelete.id)}
+              className="bg-destructive hover:bg-destructive/80"
+            >
+              Sim, excluir
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </main>
   );
 }
