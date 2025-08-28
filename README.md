@@ -44,7 +44,7 @@ Este é um **projeto de estudos** focado no desenvolvimento frontend moderno e p
 - **Design responsivo** para mobile e desktop
 - **Ícones visuais** para cada categoria
 - **Animações suaves** e transições
-- **Tema claro/escuro** (preparado)
+- **Tema claro/escuro** com persistência
 - **PWA** com manifest e service worker
 
 ### 📱 Categorias Disponíveis
@@ -92,6 +92,7 @@ Este é um **projeto de estudos** focado no desenvolvimento frontend moderno e p
 - **SEO**: Meta tags e manifest configurados
 - **PWA**: Service worker e manifest implementados
 - **Acessibilidade**: Componentes Radix UI
+- **Tema**: Sistema completo de tema claro/escuro
 
 ---
 

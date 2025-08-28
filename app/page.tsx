@@ -14,6 +14,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import Image from "next/image";
+import { ThemeSelector } from "@/components/theme-selector";
 
 interface ShoppingItem {
   id: string;
@@ -92,20 +93,23 @@ export default function Home() {
 
   return (
     <main className="container w-2xl mx-auto py-8 space-y-8">
-      <div className="space-y-1">
-        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl flex items-center gap-4">
-          <Image
-            src="/images/icons/categories/shopping.png"
-            alt="Lista de Compras"
-            width={48}
-            height={48}
-            className="w-12 h-12 lg:w-16 lg:h-16 object-contain"
-          />
-          Lista de Compras
-        </h1>
-        <p className="text-xl text-muted-foreground">
-          Organize suas compras por categorias
-        </p>
+      <div className="flex items-start justify-between">
+        <div className="space-y-1">
+          <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl flex items-center gap-4">
+            <Image
+              src="/images/icons/categories/shopping.png"
+              alt="Lista de Compras"
+              width={48}
+              height={48}
+              className="w-12 h-12 lg:w-16 lg:h-16 object-contain"
+            />
+            Lista de Compras
+          </h1>
+          <p className="text-xl text-muted-foreground">
+            Organize suas compras por categorias
+          </p>
+        </div>
+        <ThemeSelector />
       </div>
 
       <AddItemForm onAdd={handleAddItem} />
