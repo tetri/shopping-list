@@ -7,7 +7,7 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=for-the-badge&logo=tailwind-css)
 
-[![CI](https://github.com/seu-usuario/shopping-list/actions/workflows/ci.yml/badge.svg)](https://github.com/seu-usuario/shopping-list/actions/workflows/ci.yml)
+[![CI](https://github.com/tetri/shopping-list/actions/workflows/ci.yml/badge.svg)](https://github.com/tetri/shopping-list/actions/workflows/ci.yml)
 [![Dependabot](https://img.shields.io/badge/Dependabot-Enabled-02569B?style=for-the-badge&logo=dependabot)](https://dependabot.com/)
 
 </div>
@@ -82,7 +82,7 @@ Este é um **projeto de estudos** focado no desenvolvimento frontend moderno e p
 ## 📊 Status do Projeto
 
 ### 🟢 Build Status
-- **CI/CD**: [![CI](https://github.com/seu-usuario/shopping-list/actions/workflows/ci.yml/badge.svg)](https://github.com/seu-usuario/shopping-list/actions/workflows/ci.yml)
+- **CI/CD**: [![CI](https://github.com/tetri/shopping-list/actions/workflows/ci.yml/badge.svg)](https://github.com/tetri/shopping-list/actions/workflows/ci.yml)
 - **Dependabot**: Atualizações automáticas de dependências
 - **Code Quality**: ESLint configurado
 - **Testing**: Jest e Testing Library configurados
@@ -105,7 +105,7 @@ Este é um **projeto de estudos** focado no desenvolvimento frontend moderno e p
 
 ```bash
 # Clone o repositório
-git clone https://github.com/seu-usuario/shopping-list.git
+git clone https://github.com/tetri/shopping-list.git
 cd shopping-list
 
 # Instale as dependências
