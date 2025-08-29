@@ -13,6 +13,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import Image from "next/image";
+import { ThemeSelector } from "@/components/theme-selector";
 
 interface ShoppingItem {
   id: string;
@@ -20,6 +22,18 @@ interface ShoppingItem {
   quantity: number;
   category: string;
   completed: boolean;
+}
+
+// Mapeamento de categorias para ícones
+const categoryIcons: Record<string, string> = {
+  "Bebidas": "/images/icons/categories/bebidas.png",
+  "Carnes": "/images/icons/categories/carnes.png",
+  "Frutas e Verduras": "/images/icons/categories/frutas-e-verduras.png",
+  "Grãos e Cereais": "/images/icons/categories/graos-e-cereais.png",
+  "Higiene": "/images/icons/categories/shopping.png",
+  "Laticínios": "/images/icons/categories/laticinios.png",
+  "Limpeza": "/images/icons/categories/limpeza.png",
+  "Outros": "/images/icons/categories/shopping.png",
 }
 
 export default function Home() {
@@ -79,13 +93,23 @@ export default function Home() {
 
   return (
     <main className="container w-2xl mx-auto py-8 space-y-8">
-      <div className="space-y-1">
-        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-          Lista de Compras
-        </h1>
-        <p className="text-xl text-muted-foreground">
-          Organize suas compras por categorias
-        </p>
+      <div className="flex items-start justify-between">
+        <div className="space-y-1">
+          <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl flex items-center gap-4">
+            <Image
+              src="/images/icons/categories/shopping.png"
+              alt="Lista de Compras"
+              width={48}
+              height={48}
+              className="w-12 h-12 lg:w-16 lg:h-16 object-contain"
+            />
+            Lista de Compras
+          </h1>
+          <p className="text-xl text-muted-foreground">
+            Organize suas compras por categorias
+          </p>
+        </div>
+        <ThemeSelector />
       </div>
 
       <AddItemForm onAdd={handleAddItem} />
@@ -93,7 +117,21 @@ export default function Home() {
       <div className="space-y-6">
         {Object.entries(groupedItems).map(([category, items]) => (
           <div key={category} className="space-y-4">
-            <h2 className="scroll-m-20 text-xl font-semibold tracking-tight">{category}</h2>
+            <h2 className="scroll-m-20 text-xl font-semibold tracking-tight flex items-center gap-3">
+              <Image
+                src={categoryIcons[category]}
+                alt={category}
+                width={32}
+                height={32}
+                className="w-8 h-8 object-contain"
+                onError={(e) => {
+                  // Fallback para um ícone genérico se a imagem não carregar
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                }}
+              />
+              {category}
+            </h2>
             <div className="space-y-2">
               {items.map((item) => (
                 <ShoppingItem

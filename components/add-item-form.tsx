@@ -10,21 +10,34 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Plus } from "lucide-react"
+import Image from "next/image"
 
 interface AddItemFormProps {
   onAdd: (name: string, category: string, quantity: number) => void
 }
 
 const categories = [
-  "Frutas e Verduras",
-  "Carnes",
-  "Laticínios",
-  "Grãos e Cereais",
   "Bebidas",
-  "Limpeza",
+  "Carnes",
+  "Frutas e Verduras",
+  "Grãos e Cereais",
   "Higiene",
+  "Laticínios",
+  "Limpeza",
   "Outros",
 ]
+
+// Mapeamento de categorias para ícones
+const categoryIcons: Record<string, string> = {
+  "Bebidas": "/images/icons/categories/bebidas.png",
+  "Carnes": "/images/icons/categories/carnes.png",
+  "Frutas e Verduras": "/images/icons/categories/frutas-e-verduras.png",
+  "Grãos e Cereais": "/images/icons/categories/graos-e-cereais.png",
+  "Higiene": "/images/icons/categories/shopping.png",
+  "Laticínios": "/images/icons/categories/laticinios.png",
+  "Limpeza": "/images/icons/categories/limpeza.png",
+  "Outros": "/images/icons/categories/shopping.png",
+}
 
 export function AddItemForm({ onAdd }: AddItemFormProps) {
   const [name, setName] = useState("")
@@ -52,7 +65,19 @@ export function AddItemForm({ onAdd }: AddItemFormProps) {
             </SelectTrigger>
             <SelectContent>
               {categories.map((cat) => (
-                <SelectItem key={cat} value={cat}>
+                <SelectItem key={cat} value={cat} className="flex items-center gap-2">
+                  <Image
+                    src={categoryIcons[cat]}
+                    alt={cat}
+                    width={20}
+                    height={20}
+                    className="w-5 h-5 object-contain"
+                    onError={(e) => {
+                      // Fallback para um ícone genérico se a imagem não carregar
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                    }}
+                  />
                   {cat}
                 </SelectItem>
               ))}
